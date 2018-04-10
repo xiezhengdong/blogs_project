@@ -18,8 +18,9 @@ from django.urls import path
 from django.conf.urls import url,include
 from blog import views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url('^login.html/$',views.login),
-    url('^register.html/$',views.register)
+    url('^login/$',views.yewu().login,name='login'),
+    url('^register/$',views.yewu().register,name='register')
 ]
