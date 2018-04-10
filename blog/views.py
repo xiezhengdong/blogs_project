@@ -1,5 +1,5 @@
-from django.shortcuts import render,HttpResponse
-
+from django.shortcuts import render,HttpResponse,redirect
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 class yewu(object):
@@ -9,7 +9,7 @@ class yewu(object):
             user = req.POST['user']
             password = req.POST['password']
             print(user,password)
-            return render(req, 'login.html')
+            return HttpResponseRedirect('http://127.0.0.1/index/')
         return render(req,'login.html')
 
     def register(self,req):
@@ -20,3 +20,6 @@ class yewu(object):
             print(user,password,password_1)
             return render(req, 'register.html')
         return render(req, 'register.html')
+
+    def index(self,req):
+        return render(req,'index.html')
