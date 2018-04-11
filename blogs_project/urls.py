@@ -25,3 +25,4 @@ urlpatterns = [
     url('^register/$',views.yewu().register,name='register'),
     url('^index/$',views.yewu().index),
 ]
+

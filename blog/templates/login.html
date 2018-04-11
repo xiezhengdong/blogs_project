@@ -44,7 +44,6 @@
 			<button type="button" class="login-btn register-btn" id="button" onclick="log(this.form)" >登录</button>
 		</div>
 </form>
-
         <!--
 		<div class="remember clearfix">
 			<label class="remember-me"><span class="icon"><span class="zt"></span></span><input type="checkbox" name="remember-me" id="remember-me" class="remember-mecheck" checked>记住我</label>
@@ -69,15 +68,19 @@
 <script>
     //s使用js提交数据
     function log(form) {
+
     	if(form.user.value =='' || form.password.value =='') {
 			alert('请帅哥,美女输入账号或密码！！！！');
 			form.user.focus();
 			form.password.focus();
 			return false;
 		}
+		if(form.user.value !='' || form.password.value !=''){
+            document.mylogin.submit();
+            var tishi = {{tishi|safe}}
+            alert(tishi);
 
-        document.mylogin.submit();
-        alert("登陆成功");
+           }
     }
 
 	$('.imgcode').hover(function(){
