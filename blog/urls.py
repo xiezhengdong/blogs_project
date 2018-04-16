@@ -11,5 +11,6 @@ urlpatterns = [
     url('^register/$',views.yewu().register,name='register'),
     url('^index/$',views.yewu().index),
     url('^cook_login/$',views.yewu().cook_login),
-    url('^cook_index/$',views.yewu().cook_index)
+    url('^cook_index/$',views.yewu().cook_index),
+    url('^liuyan/$',views.yewu().liuyan)
 ]

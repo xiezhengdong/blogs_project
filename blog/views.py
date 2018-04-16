@@ -59,3 +59,6 @@ class yewu(object):
     def index(self,req):#博客首页
         return render(req,'index.html')
 
+    def liuyan(self,req):#留言板
+        return render(req,'liuyan.html')
+
