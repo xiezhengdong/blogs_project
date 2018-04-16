@@ -18,11 +18,11 @@
 		<div class="index-tab">
 			<div class="index-slide-nav">
 				<a href="login.html" class="active">登录</a>
-				<a href="http://127.0.0.1/register/">注册</a>
+				<a href="/blog/register/">注册</a>
 				<div class="slide-bar"></div>				
 			</div>
 		</div>
-<form  action="/login/"  name="mylogin" method="post" >
+<form  action="/blog/login/"  name="mylogin" method="post" >
 		<div class="login form">
 
 			<div class="group">
@@ -79,8 +79,8 @@
             document.mylogin.submit();
             var tishi = {{tishi|safe}}
             alert(tishi);
-
-           }
+            //return false;
+        }
     }
 
 	$('.imgcode').hover(function(){
