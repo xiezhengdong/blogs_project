@@ -53,7 +53,7 @@ class yewu(object):
             return render(req,'cookies_index.html')
         else:
             return  redirect('/blog/cook_login/')
-        return  render(req,'cookies_index.html')
+        #return  render(req,'cookies_index.html')
 
 
     def index(self,req):#博客首页
@@ -61,4 +61,8 @@ class yewu(object):
 
     def liuyan(self,req):#留言板
         return render(req,'liuyan.html')
+
+
+    def python(self,req):
+        return render(req,'login.html')
 
