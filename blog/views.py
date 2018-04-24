@@ -16,6 +16,9 @@ class yewu(object):
             password = req.POST['password']#获取密码
             print(user,password)
             date_oj = models.zhuce.objects.get(user=user)#查询数据里的用户名
+            v =models.zhuce.objects.all()
+
+            #print(v)
             print(date_oj.user)
             mylist =['用户名不存在']
             if user in  date_oj.user:
@@ -64,5 +67,7 @@ class yewu(object):
 
 
     def python(self,req):
-        return render(req,'login.html')
+        return render(req,'py.html')
 
+    def django(self,req):
+        return render(req, 'dj.html')

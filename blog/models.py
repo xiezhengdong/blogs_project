@@ -8,3 +8,5 @@ class zhuce(models.Model):
 
 class artice(models.Model):
     title = models.CharField(max_length=100)
+    shjian = models.CharField(max_length=50)
+    content = models.CharField(max_length=100000)
