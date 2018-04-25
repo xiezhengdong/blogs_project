@@ -96,34 +96,40 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
     <article style="background-origin: border-box" href="/">
         <h1>Internet Explorer 9</h1>
         <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>
+        <p>66666666666666666666666</p>
     </article>
+    <br>
     <article >
         <h1>Internet Explorer 9</h1>
         <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>
+        <p id="num">555555555555555555555</p>
     </article>
 </div>
 <ul class="pagination">
-  <li><a href="#">«</a></li>
-  <li><a href="#">1</a></li>
-  <li><a class="active" href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
+  <li><a href="#" name="">«</a></li>
+  <li><a href="/python/page/?num=1">1</a></li>
+  <li><a class="active" href="?num=2">2</a></li>/
+  <li><a href="?num=3">3</a></li>
+  <li><a href="?num=4">4</a></li>
   <li><a href="#">5</a></li>
   <li><a href="#">6</a></li>
   <li><a href="#">7</a></li>
   <li><a href="#">»</a></li>
 </ul>
-<script type="text/javascript">
-    $.ajax({
-         type: "get",
-         async: false,
-         url: "https://blog.csdn.net/qq_33714487/article/details/79112555",
-         success:function (res) {
-             console.log(res);
-             //alert(res)
 
-         }
-    })
+<script type="text/javascript">
+    function f() {
+        var tu=10;
+        ff = {
+            a:function f1() {
+                var gg ='hello';
+                return gg;
+        }
+        };
+        return ff;
+    }
+    console.log(f().a());
+    document.getElementById('num').innerHTML='8080800808080';
 </script>
 </body>
 </html>

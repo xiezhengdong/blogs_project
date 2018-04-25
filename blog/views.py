@@ -1,5 +1,7 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.http import HttpResponseRedirect,JsonResponse
+from django.core.paginator import Paginator
+
 from blog.models import zhuce
 from blog import models
 from django.forms.models import model_to_dict
@@ -71,3 +73,8 @@ class yewu(object):
 
     def django(self,req):
         return render(req, 'dj.html')
+
+    def page(self,req):
+        num = req.GET('num')
+        print(num)
+        return render(req,'py.html')
