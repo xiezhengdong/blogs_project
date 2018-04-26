@@ -93,27 +93,30 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
    </div>
 </div>
 <div>
+    {% for i in skum %}
     <article style="background-origin: border-box" href="/">
-        <h1>Internet Explorer 9</h1>
-        <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>
-        <p>66666666666666666666666</p>
+        <h1 >{{ i.shjian }}</h1>
+        <p> {{ i.title }}</p>
+        <p>{{ i.content }}</p>
     </article>
-    <br>
-    <article >
-        <h1>Internet Explorer 9</h1>
-        <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>
-        <p id="num">555555555555555555555</p>
-    </article>
+        <br>
+    {% endfor %}
+
+{#    <article >#}
+{#        <h1>Internet Explorer 9</h1>#}
+{#        <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>#}
+{#        <p id="num">555555555555555555555</p>#}
+{#    </article>#}
 </div>
 <ul class="pagination">
   <li><a href="#" name="">«</a></li>
-  <li><a href="/python/page/?num=1">1</a></li>
-  <li><a class="active" href="?num=2">2</a></li>/
-  <li><a href="?num=3">3</a></li>
-  <li><a href="?num=4">4</a></li>
-  <li><a href="#">5</a></li>
-  <li><a href="#">6</a></li>
-  <li><a href="#">7</a></li>
+  <li><a href="/blog/python/page/?num=1">1</a></li>
+  <li><a class="active" href="/blog/python/page/?num=2">2</a></li>/
+  <li><a href="/blog/python/page/?num=3">3</a></li>
+  <li><a href="/blog/python/page/?num=4">4</a></li>
+  <li><a href="/blog/python/page/?num=5">5</a></li>
+  <li><a href="/blog/python/page/?num=6">6</a></li>
+  <li><a href="/blog/python/page/?num=7">7</a></li>
   <li><a href="#">»</a></li>
 </ul>
 
@@ -129,7 +132,9 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
         return ff;
     }
     console.log(f().a());
-    document.getElementById('num').innerHTML='8080800808080';
+    var o = document.getElementById('logo');
+    console.log(o.innerText);
+    {#document.getElementById('num').innerHTML='8080800808080';#}
 </script>
 </body>
 </html>

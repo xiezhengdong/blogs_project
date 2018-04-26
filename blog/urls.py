@@ -15,5 +15,6 @@ urlpatterns = [
     url('^liuyan/$',views.yewu().liuyan),
     url('^python/$',views.yewu().python),
     url('^django/$',views.yewu().django),
-    url('^python/page/&',views.yewu().page)
+    url('^python/page/$',views.yewu().page_py),
+    url('^django/page/$',views.yewu().page_dj)
 ]

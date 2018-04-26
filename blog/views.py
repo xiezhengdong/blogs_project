@@ -1,6 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from django.http import HttpResponseRedirect,JsonResponse
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator,Paginator, EmptyPage
 
 from blog.models import zhuce
 from blog import models
@@ -68,13 +68,27 @@ class yewu(object):
         return render(req,'liuyan.html')
 
 
-    def python(self,req):
+    def python(self,req):#python文章首页
         return render(req,'py.html')
 
-    def django(self,req):
+    def django(self,req):#django文章首页
         return render(req, 'dj.html')
 
-    def page(self,req):
-        num = req.GET('num')
+    def page_py(self,req):#python文章分页
+        global skum
+        sum = models.artice.objects.all().values()
+        print(sum)
+        pageintor =  Paginator(sum,3)
+        num = req.GET.get('num')
+        try:
+            skum = pageintor.page(num)
+        except Exception as e:
+            print(e)
         print(num)
-        return render(req,'py.html')
+        ar = [1,2,3,46]
+        return render(req,'py.html',{'skum':skum})
+
+    def page_dj(self,req):#django文章分页
+        num = req.GET.get('num')
+        print(num)
+        return render(req,'dj.html')
