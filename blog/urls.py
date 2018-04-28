@@ -16,5 +16,6 @@ urlpatterns = [
     url('^python/$',views.yewu().python),
     url('^django/$',views.yewu().django),
     url('^python/page/$',views.yewu().page_py),
-    url('^django/page/$',views.yewu().page_dj)
+    url('^django/page/$',views.yewu().page_dj),
+    url('^text_html/$',views.yewu().test_html)
 ]

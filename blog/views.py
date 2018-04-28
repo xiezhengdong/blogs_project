@@ -74,6 +74,9 @@ class yewu(object):
     def django(self,req):#django文章首页
         return render(req, 'dj.html')
 
+    def test_html(self,req):#测试HTML的样式
+        return render(req, '样式.html')
+
     def page_py(self,req):#python文章分页
         global skum
         sum = models.artice.objects.all().values()
@@ -85,10 +88,17 @@ class yewu(object):
         except Exception as e:
             print(e)
         print(num)
-        ar = [1,2,3,46]
         return render(req,'py.html',{'skum':skum})
 
     def page_dj(self,req):#django文章分页
+        global skum
+        sum = models.artice.objects.all().values()
+        print(sum)
+        pageintor = Paginator(sum, 3)
         num = req.GET.get('num')
+        try:
+            skum = pageintor.page(num)
+        except Exception as e:
+            print(e)
         print(num)
-        return render(req,'dj.html')
+        return render(req, 'dj.html', {'skum': skum})

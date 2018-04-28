@@ -22,6 +22,7 @@ from blog import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^blog/',include('blog.urls')),
+
     # url('^login/$',views.yewu().login,name='login'),
     # url('^register/$',views.yewu().register,name='register'),
     # url('^index/$',views.yewu().index),

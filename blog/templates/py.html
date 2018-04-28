@@ -7,12 +7,16 @@
 <meta name="Description" content="" >
 <link href="" rel="stylesheet">
 <link href="/static/css/styles.css" rel="stylesheet">
+<link href="/static/css/bootstrap.min.css" rel="stylesheet">
+<link href="/static/css/bootstrap.css" rel="stylesheet">
+<link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+<link href="/static/css/bootstrap-theme.css" rel="stylesheet">
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
 
 <script src="/static/js/jquery-3.3.1.min.js"></script>
-<script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+{#<script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>#}
 
 <script src="/static/js/main.js"></script>
     <style type="text/css">
@@ -60,8 +64,9 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
       <li><a href="http://www.cnblogs.com/Huangsh2017Come-on/" target="_blank">个人博客</a></li>
       <li><a href="/">技术探讨</a>
          <ul class="second-lvl">
-           <li><a href="/blog/python/">python</a></li>
-           <li><a href="/blog/django/">django</a></li>
+           <li><a href="/blog/python/page/?num=1">python</a></li>
+           <li><a href="/blog/django/page/?num=1">django</a></li>
+             <li><a href="/blog/django/">java</a></li>
            <li><a href="/">javascripts</a>
                <ul class="third-lvl">
                   <li><a href="/">js的闭包实现</a></li>
@@ -94,22 +99,50 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 </div>
 <div>
     {% for i in skum %}
-    <article style="background-origin: border-box" href="/">
-        <h1 >{{ i.shjian }}</h1>
-        <p> {{ i.title }}</p>
-        <p>{{ i.content }}</p>
-    </article>
+    <div class="row">
+  <div class="col-md-8">
+    <div class="row">
+      <div class="col-md-8">
+        <h4><strong><a href="#">{{ i.title }}</a></strong></h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2">
+        <a href="#" class="thumbnail">
+            <img src="http://placehold.it/260x180" alt="">
+        </a>
+      </div>
+      <div class="col-md-6">
+        <p>
+         {{ i.content }}
+        </p>
+        <p><a class="btn" href="#">阅读全文</a></p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p></p>
+        <p>
+          <i class="icon-user"></i> by <a href="#">发布者</a>
+          | <i class="icon-calendar"></i> {{ i.shijian }}
+          | <i class="icon-comment"></i> <a href="#">3 条回复</a>
+          | <i class="icon-share"></i> <a href="#">转发 39 次</a>
+          | <i class="icon-tags"></i> Tags : <a href="#"><span class="label label-info">Snipp</span></a>
+          <a href="#"><span class="label label-info">Bootstrap</span></a>
+          <a href="#"><span class="label label-info">UI</span></a>
+          <a href="#"><span class="label label-info">growth</span></a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>
         <br>
     {% endfor %}
 
-{#    <article >#}
-{#        <h1>Internet Explorer 9</h1>#}
-{#        <p> Windows Internet Explorer 9(缩写为 IE9 )在2011年3月14日21:00 发布。</p>#}
-{#        <p id="num">555555555555555555555</p>#}
-{#    </article>#}
 </div>
 <ul class="pagination">
-  <li><a href="#" name="">«</a></li>
+  <li><a href="" name="上一页">«</a></li>
   <li><a href="/blog/python/page/?num=1">1</a></li>
   <li><a class="active" href="/blog/python/page/?num=2">2</a></li>/
   <li><a href="/blog/python/page/?num=3">3</a></li>
@@ -117,7 +150,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
   <li><a href="/blog/python/page/?num=5">5</a></li>
   <li><a href="/blog/python/page/?num=6">6</a></li>
   <li><a href="/blog/python/page/?num=7">7</a></li>
-  <li><a href="#">»</a></li>
+  <li><a href="" name="下一页">»</a></li>
 </ul>
 
 <script type="text/javascript">
@@ -131,10 +164,34 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
         };
         return ff;
     }
-    console.log(f().a());
-    var o = document.getElementById('logo');
-    console.log(o.innerText);
-    {#document.getElementById('num').innerHTML='8080800808080';#}
+    class Dog {
+  // 构造函数
+      constructor(name){
+        this.name = name;
+      }
+
+  // 普通方法
+      dark(){
+        console.log(this.name + "bark");
+      }
+      static staticMethod(){
+             console.log("I'm static method!");
+        }
+
+      hr(){
+      	var a = [1,2,3,4];
+      	for(var va of a){
+      		console.log(va);
+        }
+      }
+
+    }
+   Dog.staticMethod();
+    n = new Dog('555555555');
+    n.dark()
+    n.hr()
+
+
 </script>
 </body>
 </html>
