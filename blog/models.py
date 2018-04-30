@@ -9,6 +9,7 @@ class zhuce(models.Model):
 class artice(models.Model):#python
     title = models.CharField(max_length=100)
     shjian = models.CharField(max_length=50)
+    zhaiyao = models.CharField(max_length=300)
     content = models.CharField(max_length=100000)
 
 class artice_dj(models.Model):#django

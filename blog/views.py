@@ -91,7 +91,7 @@ class yewu(object):
         page = '/blog/python/page/?num='
         shang_page = page + str(int(num)-1)
         xia_page = page + str(int(num)+1)
-        return render(req,'py.html',{'skum':skum,'sp':shang_page,'xp':xia_page})
+        return render(req,'py.html',{'skum':skum,'sp':shang_page,'xp':xia_page,'num':num})
 
     def page_dj(self,req):#django文章分页
         global skum
@@ -104,4 +104,7 @@ class yewu(object):
         except Exception as e:
             print(e)
         print(num)
-        return render(req, 'dj.html', {'skum': skum})
+        page = '/blog/django/page/?num='
+        shang_page = page + str(int(num) - 1)
+        xia_page = page + str(int(num) + 1)
+        return render(req, 'dj.html', {'skum': skum,'sp':shang_page,'xp':xia_page,'num':num})

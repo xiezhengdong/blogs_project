@@ -47,7 +47,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
 </head>
 <body>
 <header>
-<a href="/blog/index/" id="logo"><img src="" alt=""/><h1>踏雪寻梅</h1></a>
+<a href="/blog/index/" id="logo"><img src="/static/images/logo.png" alt=""/><h1>极客</h1></a>
  <div id="wrap-menu">
    <ul id="header-menu">
      <li><a href="/blog/index/">网站首页</a></li>
@@ -84,7 +84,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
             </li>
            </ul>
         </li>
-        <li><a href="/blog/liuyan/" target="_blank">给我留言</a></li>
+        <li><a href="/blog/liuyan/" target="_blank">爬虫世界</a></li>
 
     </ul>
 </div>
@@ -111,7 +111,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
       </div>
       <div class="col-md-6">
         <p>
-         {{ i.content.1 }}
+         {{ i.zhaiyao }}
         </p>
         <p><a class="btn" href="#">阅读全文</a></p>
       </div>
@@ -121,9 +121,9 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
         <p></p>
         <p>
           <i class="icon-user"></i><a>阅读(4)</a>
-           <i class="icon-calendar"></i> {{ i.shijian }}
-          | <i class="icon-comment"></i> <a href="#">3 条回复</a>
-          | <i class="icon-share"></i> <a href="#">转发 39 次</a>
+           <i class="icon-calendar"></i> {{ i.shjian }}
+          | <i class="icon-comment"></i> <a href="#">评论</a>
+{#          | <i class="icon-share"></i> <a href="#">转发 39 次</a>#}
           | <i class="icon-tags"></i> 技术标签 : <a href="#"><span class="label label-info">django</span></a>
           <a href="#"><span class="label label-info">后台开发</span></a>
           <a href="#"><span class="label label-info">设计模式</span></a>
@@ -137,18 +137,68 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
         <br>
     {% endfor %}
 <ul class="pagination">
-  <li><a href="#">«</a></li>
-  <li><a href="/blog/django/page/?num=1">1</a></li>
-  <li><a class="active" href="/blog/django/page/?num=2">2</a></li>/
-  <li><a href="/blog/django/page/?num=3">3</a></li>
-  <li><a href="/blog/django/page/?num=4">4</a></li>
-  <li><a href="/blog/django/page/?num=5">5</a></li>
-  <li><a href="/blog/django/page/?num=6">6</a></li>
-  <li><a href="/blog/django/page/?num=7">7</a></li>
-  <li><a href="#">»</a></li>
+  <li><a href={{ sp }} name="上一页">«</a></li>
+  <li><a id="1" class="" href="/blog/django/page/?num=1">1</a></li>
+  <li><a id="2" class="" href="/blog/django/page/?num=2">2</a></li>
+  <li><a id="3" class="" href="/blog/django/page/?num=3">3</a></li>
+  <li><a id="4" class="" href="/blog/django/page/?num=4">4</a></li>
+  <li><a id="5" class="" href="/blog/django/page/?num=5">5</a></li>
+  <li><a id="7" class="" href="/blog/django/page/?num=6">6</a></li>
+  <li><a href={{ xp }} name="下一页">»</a></li>
 </ul>
-
-
 </div>
+<footer>
+ <div class="footer-mid">
+    <section class="visitors">
+      <h2>最近访客</h2>
+      <ul>
+       <li><a href="/"><img src="/static/images/01.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/02.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/03.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/04.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/02.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/03.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/04.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/03.jpg"></a></li>
+       <li><a href="/"><img src="/static/images/04.jpg"></a></li>
+      </ul>
+    </section>
+      <section class="links">
+      <h2>合作伙伴</h2>
+      <ul>
+       <li><a href="/">黄松辉个人博客网站</a></li>
+       <li><a href="/">百度</a></li>
+       <li><a href="/">Google</a></li>
+       <li><a href="/">Sina</a></li>
+       <li><a href="/">3dst 技术服务中心</a></li>
+       <li><a href="/">3dst web</a></li>
+      </ul>
+    </section>
+     <section class="links">
+      <h2>友情链接</h2>
+      <ul>
+       <li><a href="/">黄松辉个人博客网站</a></li>
+       <li><a href="/">百度</a></li>
+       <li><a href="/">3dst 技术服务中心</a></li>
+       <li><a href="/">3dst web</a></li>
+      </ul>
+    </section>
+    <section class="contact">
+      <h2>留言</h2>
+      <form id="footer-form" method="post" action="">
+        <input type="text" onfocus="if(this.value=='Name')this.value='';" onblur="if(this.value=='')this.value='Name';" value="Name" name="field1footer" class="footer-input" >
+         <input type="text" onfocus="if(this.value=='Email')this.value='';" onblur="if(this.value=='')this.value='Email';" value="Email" class="footer-input">
+         <textarea class="footer-textarea" name="field3footer" id="field3footer"></textarea>
+         <input type="submit" id="submit" value="Send" name="submit">
+          </form>
+    </section>
+ </div>
+<div id="footer-bottom"><ul><p>Copyright 2011 - 2014 design by <a href="/">dancesmile</a></p></ul></div>
+</footer>
+<script type="text/javascript">
+    var m = {{ num }};
+    document.getElementById(m).className='active'
+
+</script>
 </body>
 </html>
