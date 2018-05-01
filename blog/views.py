@@ -77,6 +77,9 @@ class yewu(object):
     def test_html(self,req):#测试HTML的样式
         return render(req, '样式.html')
 
+    def xiangqing(self,req):#文章详情页
+        return render(req,'xq.html')
+
     def page_py(self,req):#python文章分页
         global skum
         sum = models.artice.objects.all().values()

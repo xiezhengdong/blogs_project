@@ -13,9 +13,10 @@ urlpatterns = [
     url('^cook_login/$',views.yewu().cook_login),
     url('^cook_index/$',views.yewu().cook_index),
     url('^liuyan/$',views.yewu().liuyan),
-    url('^python/$',views.yewu().python),
-    url('^django/$',views.yewu().django),
+    #url('^python/$',views.yewu().python),
+    #url('^django/$',views.yewu().django),
     url('^python/page/$',views.yewu().page_py),
     url('^django/page/$',views.yewu().page_dj),
-    url('^text_html/$',views.yewu().test_html)
+    url('^text_html/$',views.yewu().test_html),
+    url('^xq/$',views.yewu().xiangqing)
 ]
