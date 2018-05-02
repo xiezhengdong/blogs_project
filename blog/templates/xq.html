@@ -40,7 +40,7 @@
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/js/main.js"></script>
 </head>
-<body>
+
 <header>
 <a href="/blog/index/" id="logo"><img src="/static/images/logo.png" alt=""/><h1>雪寻梅</h1></a>
  <div id="wrap-menu">
@@ -85,366 +85,268 @@
     </ul>
 </div>
 </header>
-<div id="container">
-   <div class="banner">
-     <img src="/static/images/banner1.jpg">
-   </div>
-</div>
 
 
 
+<body>
+<head>
+  <meta charset="utf-8">
 
-<div class="post-single">
-    <div class="page-position">
-        <i class="fa fa-home"></i>&nbsp;
-        <span class="hidden-xs">当前位置：</span>
-        <a href="http://www.mywhblog.cn" title="梦影雾花">首页</a> &raquo;
-        <a href="#"title="Javascript常用的技巧" rel="category tag">Javascript常用的技巧</a>
-        <span class="hidden-xs">&raquo; 正文</span>
+  <title>Python 中的单例模式 | FunHacks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="单例模式单例模式（Singleton Pattern）是一种常用的软件设计模式，该模式的主要目的是确保某一个类只有一个实例存在。当你希望在整个系统中，某个类只能出现一个实例时，单例对象就能派上用场。
+比如，某个服务器程序的配置信息存放在一个文件中，客户端通过一个 AppConfig 的类来读取配置文件的信息。如果在程序运行期间，有很多地方都需要使用配置文件的内容，也就是说，很多地方都需要创建 Ap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 中的单例模式">
+<meta property="og:url" content="http://funhacks.net/2017/01/17/singleton/index.html">
+<meta property="og:site_name" content="FunHacks">
+<meta property="og:description" content="单例模式单例模式（Singleton Pattern）是一种常用的软件设计模式，该模式的主要目的是确保某一个类只有一个实例存在。当你希望在整个系统中，某个类只能出现一个实例时，单例对象就能派上用场。
+比如，某个服务器程序的配置信息存放在一个文件中，客户端通过一个 AppConfig 的类来读取配置文件的信息。如果在程序运行期间，有很多地方都需要使用配置文件的内容，也就是说，很多地方都需要创建 Ap">
+<meta property="og:updated_time" content="2017-02-12T04:28:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python 中的单例模式">
+<meta name="twitter:description" content="单例模式单例模式（Singleton Pattern）是一种常用的软件设计模式，该模式的主要目的是确保某一个类只有一个实例存在。当你希望在整个系统中，某个类只能出现一个实例时，单例对象就能派上用场。
+比如，某个服务器程序的配置信息存放在一个文件中，客户端通过一个 AppConfig 的类来读取配置文件的信息。如果在程序运行期间，有很多地方都需要使用配置文件的内容，也就是说，很多地方都需要创建 Ap">
+
+    <link rel="alternate" href="http://funhacks.net/atom.xml" title="FunHacks" type="application/atom+xml">
+    <link rel="icon" href="http://funhacks.net/favicon.ico">
+
+  <link rel="stylesheet" href="http://funhacks.net/css/style.css">
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-62960961-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+
+          <a id="nav-rss-link" class="nav-icon" href="http://funhacks.net/atom.xml" title="RSS Feed"></a>
+
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://funhacks.net"></form>
+      </div>
+
     </div>
-    <h1 class="single-title">
-        <a href="javascript:void(0);" title="Javascript常用的技巧" rel="bookmark">
-            Javascript常用的技巧
-        </a>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-singleton" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/17/singleton/" class="article-date">
+  <time datetime="2017-01-17T01:20:00.000Z" itemprop="datePublished">2017-01-17</time>
+</a>
+
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Python/">Python</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+
+
+      <header class="article-header">
+
+
+    <h1 class="article-title" itemprop="name">
+      Python 中的单例模式
     </h1>
-    <div class="single-time">
-        <i class="fa fa-clock-o"></i>2017/6/15 14:57:13<em></em>
-        <i class="fa fa-eye"></i>34<em></em>
-        <i class="fa fa-user"></i>梦影雾花<em></em>
-    </div>
-    <div id="divContent" class="article-content">
-        <p>1.使用+将字符串转换成数字</p><p>这个技巧非常有用，不过这个字符串里面必须是数字，否则将返回NaN。</p><pre class="brush:js;toolbar:false">function&nbsp;toNumber(strNumber)&nbsp;{&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;+strNumber;&nbsp;&nbsp;
-}&nbsp;&nbsp;
-console.log(toNumber(&quot;123&quot;));&nbsp;&nbsp;&nbsp;&nbsp;//输出&nbsp;&quot;123&quot;&nbsp;&nbsp;
-console.log(toNumber(+&quot;123&quot;));&nbsp;&nbsp;&nbsp;//输出&nbsp;123&nbsp;&nbsp;
-console.log(toNumber(+&quot;a&quot;));&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//输出&nbsp;NaN</pre><p>这个也适用于Date,它将返回时间戳数字。</p><pre class="brush:js;toolbar:false">console.log(+new&nbsp;Date());&nbsp;&nbsp;&nbsp;&nbsp;//输出&nbsp;1462775218918</pre><p>2.在循环中缓存array.length</p><p>循环一个数组，大家一般都会这样写。</p><pre class="brush:js;toolbar:false">for(var&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;array.length;&nbsp;i++)&nbsp;{&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;console.log(array[i]);&nbsp;&nbsp;
-}</pre><p>但是这样做数组在每次迭代的时候，都会重新计算数组的大小，这将会导致一些延误。为了避免这种现象出现，一般会把array.length做一个缓存，也就是放到一个变量里面。</p><pre class="brush:js;toolbar:false">var&nbsp;length&nbsp;=&nbsp;array.length;&nbsp;&nbsp;
-for(var&nbsp;i&nbsp;=&nbsp;0;&nbsp;i&nbsp;&lt;&nbsp;length;&nbsp;i++)&nbsp;{&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;console.log(array[i]);&nbsp;&nbsp;
-}</pre><p>也可以这样写。</p><pre class="brush:js;toolbar:false">for(var&nbsp;i&nbsp;=&nbsp;0,&nbsp;length&nbsp;=&nbsp;array.length;&nbsp;i&nbsp;&lt;&nbsp;length;&nbsp;i++)&nbsp;{&nbsp;&nbsp;
-&nbsp;&nbsp;&nbsp;&nbsp;console.log(array[i]);&nbsp;&nbsp;
-}</pre><p><br/></p>
-    </div>
-    <div class="clearfix">
-    </div>
-    <!--点赞分享按钮-->
-    <div id="cyReward2" role="cylabs" data-use="reward">
-    </div>
-    <div id="cyEmoji" role="cylabs" data-use="emoji"></div>
-    <div class="single-share text-center">
-        <ul class="list-unstyled list-inline">
-            <li>
-                <div id="cyReward" role="cylabs" data-use="reward">
-                    <a class="btn shang" data-toggle="modal" data-target=".dashang">
-                        <i class="fa fa-gift">
-                        </i>&nbsp;&nbsp;打赏
-                    </a>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <div class="modal fade baidushare" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">
-                        分享到
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="bdsharebuttonbox">
-                        <a title="分享到新浪微博" class="bds_tsina" data-cmd="tsina"></a>
-                        <a title="分享到腾讯微博" class="bds_tqq"data-cmd="tqq"></a>
-                        <a title="分享到QQ空间" class="bds_qzone" data-cmd="qzone"></a>
-                        <a title="分享到QQ好友" class="bds_sqq" data-cmd="sqq"></a>
-                        <a title="分享到豆瓣" class="bds_douban" data-cmd="douban"></a>
-                        <a title="分享到邮件分享" class="bds_mail" data-cmd="mail"></a>
-                        <a title="分享到一键分享" class="bds_mshare" data-cmd="mshare"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade dashang" role="dialog" aria-labelledby="gridSystemModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="gridSystemModalLabel">
-                        打赏
-                    </h4>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xs-6">
-                                <img src="picture/alipay.jpg" class="img-responsive" alt="支付宝打赏">
-                            </div>
-                            <div class="col-xs-6">
-                                <img src="picture/weixin.jpg" class="img-responsive" alt="微信打赏">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--上下篇-->
-    <div id="prevNext" class="prev-next">
-                <p>上一篇: <a href="/study/javascript/list_1.html" title="sql 一个表向另一个表更新数据">sql 一个表向另一个表更新数据</a></p>
-                <p>下一篇: <a href="/study/javascript/list_14.html" title="Application_Start里的代码不执行">Application_Start里的代码不执行</a></p>
-    </div>
-    <!--标签-->
-    <div class="single-tags">
-        <ul class="list-unstyled list-inline" id="tagGroup">
-                <li><a href="#" title="javascript常用的技巧">javascript常用的技巧</a></li>
-                <li><a href="#" title="javascript">javascript</a></li>
-        </ul>
-    </div>
-    <!--引用规范-->
-    <div class="single-copyright">
-        <i class="fa fa-hand-o-right"></i>&nbsp;&nbsp;文章来源：梦影雾花个人博客
-        <span class="hidden-xs">，欢迎分享，转载请保留出处</span><br>
-        <i class="fa fa-quote-left"></i>&nbsp;&nbsp;
-        <span class="hidden-xs">原文地址：</span>
-        <a id="originalLink" href="" title=""></a>
-    </div>
-    <!--阅读延展-->
-    <div class="mutuality">
-        <div class="mutuality-title text-center">
-            阅读延展
-        </div>
-        <div id="bdAd" class="row">
-
-        </div>
-    </div>
-    <div class="comments">
-        <div class="comments-title">
-            <i class="fa fa-comments-o"></i><span>评论列表</span>
-        </div>
-        <div id="SOHUCS" sid="13"></div>
-    </div>
-    <script type="text/javascript">
-        (function () {
-            var appid = 'cysNShFuQ';
-            var conf = 'prod_2a8b31dbf35e69bf446f39379263a5a6';
-            var width = window.innerWidth || document.documentElement.clientWidth;
-            if (width < 960) {
-                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-            } else { var loadJs = function (d, a) { var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement; var b = document.createElement("script"); b.setAttribute("type", "text/javascript"); b.setAttribute("charset", "UTF-8"); b.setAttribute("src", d); if (typeof a === "function") { if (window.attachEvent) { b.onreadystatechange = function () { var e = b.readyState; if (e === "loaded" || e === "complete") { b.onreadystatechange = null; a() } } } else { b.onload = a } } c.appendChild(b) }; loadJs("https://changyan.sohu.com/upload/changyan.js", function () { window.changyan.api.config({ appid: appid, conf: conf }) }); }
-        })();
-    </script>
-</div>
 
 
-</div>
-<!--right-->
-<div class="col-xs-12 col-md-4 hidden-xs hidden-sm" id="sidebar">
+      </header>
 
-    <dl class="function" id="divPromotion">
-            <dt style="display: none;"></dt>
-            <dd class="function_c">
-                <script type="text/javascript">
-                    /*首页图片上边*/
-                    var cpro_id = "u3083537";
-                </script>
-                <script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"></script>
-            </dd>
-        </dl>
-    <dl class="function" id="divHottags">
-        <dt class="function_t">热门话题</dt>
-        <dd class="function_c">
-            <ul id="hotTag">
-                <li><a href="javascript:void(0);" title="jquery插件">jquery插件</a></li><li><a href="javascript:void(0);" title="微信小说分销系统">微信小说分销系统</a></li><li><a href="javascript:void(0);" title="幸亏没生在古代">幸亏没生在古代</a></li><li><a href="javascript:void(0);" title="曾昭玮">曾昭玮</a></li><li><a href="javascript:void(0);" title="失恋阵线联盟粤语版">失恋阵线联盟粤语版</a></li><li><a href="javascript:void(0);" title="九寨沟地震">九寨沟地震</a></li><li><a href="javascript:void(0);" title="新疆精河县地震">新疆精河县地震</a></li><li><a href="javascript:void(0);" title="战狼2">战狼2</a></li><li><a href="javascript:void(0);" title="mac双系统">mac双系统</a></li><li><a href="javascript:void(0);" title="marry you">marry you</a></li>
+    <div class="article-entry" itemprop="articleBody">
 
-            </ul>
-        </dd>
-    </dl>
-    <dl class="function" id="divHotpost">
-        <dt class="function_t">热门文章</dt>
-        <dd class="function_c">
-            <div id="cyHotnews" role="cylabs" data-use="hotnews">
-            </div>
-        </dd>
-    </dl>
-    <dl class="function" id="divNewcomm">
-        <dt class="function_t">最新评论</dt>
-        <dd class="function_c">
-            <div id="cyReping" role="cylabs" data-use="reping">
-            </div>
-        </dd>
-    </dl>
-    <dl class="function" id="divReaders">
-        <dt class="function_t">给力访客</dt>
-        <dd class="function_c">
-            <div id="cyHotusers" role="cylabs" data-use="hotusers" style="width:auto;">
-            </div>
-        </dd>
-    </dl>
-</div>
+        <!-- Table of Contents -->
+
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p><strong>单例模式（Singleton Pattern）</strong>是一种常用的软件设计模式，该模式的主要目的是确保<strong>某一个类只有一个实例存在</strong>。当你希望在整个系统中，某个类只能出现一个实例时，单例对象就能派上用场。</p>
+<p>比如，某个服务器程序的配置信息存放在一个文件中，客户端通过一个 AppConfig 的类来读取配置文件的信息。如果在程序运行期间，有很多地方都需要使用配置文件的内容，也就是说，很多地方都需要创建 AppConfig 对象的实例，这就导致系统中存在多个 AppConfig 的实例对象，而这样会严重浪费内存资源，尤其是在配置文件内容很多的情况下。事实上，类似 AppConfig 这样的类，我们希望在程序运行期间只存在一个实例对象。</p>
+<p>在 Python 中，我们可以用多种方法来实现单例模式：</p>
+<ul>
+<li>使用模块</li>
+<li>使用 <code>__new__</code></li>
+<li>使用装饰器（decorator）</li>
+<li>使用元类（metaclass）</li>
+</ul>
+<a id="more"></a>
+<h1 id="使用模块"><a href="#使用模块" class="headerlink" title="使用模块"></a>使用模块</h1><p>其实，<strong>Python 的模块就是天然的单例模式</strong>，因为模块在第一次导入时，会生成 <code>.pyc</code> 文件，当第二次导入时，就会直接加载 <code>.pyc</code> 文件，而不会再次执行模块代码。因此，我们只需把相关的函数和数据定义在一个模块中，就可以获得一个单例对象了。如果我们真的想要一个单例类，可以考虑这样做：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># mysingleton.py</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">My_Singleton</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">foo</span><span class="params">(self)</span>:</span></div><div class="line">        <span class="keyword">pass</span></div><div class="line"></div><div class="line">my_singleton = My_Singleton()</div></pre></td></tr></table></figure>
+<p>将上面的代码保存在文件 <code>mysingleton.py</code> 中，然后这样使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">from mysingleton import my_singleton</div><div class="line"></div><div class="line">my_singleton.foo()</div></pre></td></tr></table></figure>
+<h1 id="使用-new"><a href="#使用-new" class="headerlink" title="使用 __new__"></a>使用 <code>__new__</code></h1><p>为了使类只能出现一个实例，我们可以使用 <code>__new__</code> 来控制实例的创建过程，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(object)</span>:</span></div><div class="line">    _instance = <span class="keyword">None</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *args, **kw)</span>:</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> cls._instance:</div><div class="line">            cls._instance = super(Singleton, cls).__new__(cls, *args, **kw)  </div><div class="line">        <span class="keyword">return</span> cls._instance  </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(Singleton)</span>:</span>  </div><div class="line">    a = <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>在上面的代码中，我们将类的实例和一个类变量 <code>_instance</code> 关联起来，如果 <code>cls._instance</code> 为 None 则创建实例，否则直接返回 <code>cls._instance</code>。</p>
+<p>执行情况如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt; one = MyClass()</div><div class="line">&gt;&gt;&gt; two = MyClass()</div><div class="line">&gt;&gt;&gt; one == two</div><div class="line">True</div><div class="line">&gt;&gt;&gt; one is two</div><div class="line">True</div><div class="line">&gt;&gt;&gt; id(one), id(two)</div><div class="line">(4303862608, 4303862608)</div></pre></td></tr></table></figure>
+<h1 id="使用装饰器"><a href="#使用装饰器" class="headerlink" title="使用装饰器"></a>使用装饰器</h1><p>我们知道，装饰器（decorator）可以动态地修改一个类或函数的功能。这里，我们也可以使用装饰器来装饰某个类，使其只能生成一个实例，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> functools <span class="keyword">import</span> wraps</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">singleton</span><span class="params">(cls)</span>:</span></div><div class="line">    instances = &#123;&#125;</div><div class="line"><span class="meta">    @wraps(cls)</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">getinstance</span><span class="params">(*args, **kw)</span>:</span></div><div class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> instances:</div><div class="line">            instances[cls] = cls(*args, **kw)</div><div class="line">        <span class="keyword">return</span> instances[cls]</div><div class="line">    <span class="keyword">return</span> getinstance</div><div class="line"></div><div class="line"><span class="meta">@singleton</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    a = <span class="number">1</span></div></pre></td></tr></table></figure>
+<p>在上面，我们定义了一个装饰器 <code>singleton</code>，它返回了一个内部函数 <code>getinstance</code>，该函数会判断某个类是否在字典 <code>instances</code> 中，如果不存在，则会将 <code>cls</code> 作为 key，<code>cls(*args, **kw)</code> 作为 value 存到 <code>instances</code> 中，否则，直接返回 <code>instances[cls]</code>。</p>
+<h1 id="使用-metaclass"><a href="#使用-metaclass" class="headerlink" title="使用 metaclass"></a>使用 metaclass</h1><p>元类（metaclass）可以控制类的创建过程，它主要做三件事：</p>
+<ul>
+<li>拦截类的创建</li>
+<li>修改类的定义</li>
+<li>返回修改后的类</li>
+</ul>
+<p>使用元类实现单例模式的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Singleton</span><span class="params">(type)</span>:</span></div><div class="line">    _instances = &#123;&#125;</div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span><span class="params">(cls, *args, **kwargs)</span>:</span></div><div class="line">        <span class="keyword">if</span> cls <span class="keyword">not</span> <span class="keyword">in</span> cls._instances:</div><div class="line">            cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)</div><div class="line">        <span class="keyword">return</span> cls._instances[cls]</div><div class="line"></div><div class="line"><span class="comment"># Python2</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span><span class="params">(object)</span>:</span></div><div class="line">    __metaclass__ = Singleton</div><div class="line"></div><div class="line"><span class="comment"># Python3</span></div><div class="line"><span class="comment"># class MyClass(metaclass=Singleton):</span></div><div class="line"><span class="comment">#    pass</span></div></pre></td></tr></table></figure>
+<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><ul>
+<li>Python 的模块是天然的单例模式，这在大部分情况下应该是够用的，当然，我们也可以使用装饰器、元类等方法</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python" target="_blank" rel="external">Creating a singleton in Python - Stack Overflow</a></li>
+<li><a href="http://coolshell.cn/articles/265.html" target="_blank" rel="external">深入浅出单实例Singleton设计模式 | 酷 壳</a></li>
+<li><a href="http://stackoverflow.com/questions/674304/pythons-use-of-new-and-init" target="_blank" rel="external">design patterns - Python’s use of <strong>new</strong> and <strong>init</strong>? - Stack Overflow</a></li>
+</ul>
 
 
-        </div>
-        <!--links-->
-        <div class="links container">
-            <div class="col-xs-12">
-                <div class="links-pic text-center">
-                    <ul class="list-unstyled list-inline text-left"></ul>
-                </div>
-                <div class="links-txt text-center">
-                    <div class="links-title">
-                        友情链接
-                    </div>
-                    <ul class="list-unstyled list-inline text-left">
-                        <li><a href="http://www.jiangfei.net" title="疆飞" target="_blank">疆飞</a></li>
-                        <li><a href="http://www.zbboke.com" title="张兵个人博客" target="_blank">张兵个人博客</a></li>
-                        <li><a href="http://fgyong.cn/" title="兜兜转转" target="_blank">兜兜转转</a></li>
-                        <li><a href="http://nzzrdt.com/" title="拿着灼热的铁" target="_blank">拿着灼热的铁</a></li>
-                        <li><a href="http://www.yxxrui.cn" title="伊人博客" target="_blank">伊人博客</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
+    <footer class="article-footer">
+      <a data-url="http://funhacks.net/2017/01/17/singleton/" data-id="cj1iv3ig9004a5u6gigjr2s8c" class="article-share-link">分享</a>
 
-    <!--footer-->
-    <footer id="footer">
-        <div class="container">
-            <div class="text-center">
-                © 2017 梦影雾花 - 独立博客&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn" target="_blank">豫ICP备17002472号-1</a>&nbsp;&nbsp;
-            </div>
-        </div>
+        <a href="http://funhacks.net/2017/01/17/singleton/#disqus_thread" class="article-comment-link">留言</a>
+
+
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/">python</a></li></ul>
+
     </footer>
-    <!--kefu-->
-    <div id="kefu" class="kefu">
-        <div class="qq hidden-xs">
-            <a href="http://wpa.qq.com/msgrd?v=3&uin=870081885&site=http://www.mywhblog.cn&menu=yes" target="_blank" rel="nofollow">
-                <i class="fa fa-qq fa-lg"></i>
-            </a>
-        </div>
+  </div>
 
-        <div class="weibo">
-            <i class="fa fa-weibo fa-lg"></i>
-            <div class="kefu-tip">
-                <div class="kefu-tip-arrow kefu-tip-arrow-left">
-                    <em></em><ins></ins>
-                </div>
-                <div>
-                    <img src="http://www.mywhblog.cn/Content/images/weibo.jpg" style="width:90px;height:90px;" alt="新浪微博">
-                </div>
-            </div>
-        </div>
-        <div class="weixin">
-            <i class="fa fa-weixin fa-lg"></i>
-            <div class="kefu-tip">
-                <div class="kefu-tip-arrow kefu-tip-arrow-left">
-                    <em></em><ins></ins>
-                </div>
-                <div>
-                    <img src="http://www.mywhblog.cn/Content/images/weixin.jpg" style="width:90px;height:90px;" alt="微信">
-                </div>
-            </div>
-        </div>
-        <div class="phone hidden-xs">
-            <i class="fa fa-phone fa-lg"></i>
-            <div class="kefu-tip">
-                <div class="kefu-tip-arrow kefu-tip-arrow-left">
-                    <em></em><ins></ins>
-                </div>
-                <div class="phones">
-                    <i class="fa fa-phone"></i>
-                    你猜啊：<br />
-                    <i class="fa fa-whatsapp"></i>
-                    手机：1822134XXXX
-                </div>
-            </div>
-        </div>
-        <div class="top">
-            <i class="fa fa-angle-up fa-2x"></i>
-        </div>
+<nav id="article-nav">
+
+    <a href="/2017/02/13/itertools/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+          高效的 itertools 模块
+      </div>
+    </a>
+    <a href="/2017/01/03/explore_python/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">Python 之旅</div>
+    </a>
+
+</nav>
+
+</article>
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+
+    <aside id="sidebar">
+
+    <div class="widget-wrap">
+
+      <div class="widget" id="toc-widget-fixed">
+
+        <strong class="toc-title">目录</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#单例模式"><span class="toc-number">1.</span> <span class="toc-text">单例模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用模块"><span class="toc-number">2.</span> <span class="toc-text">使用模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-new"><span class="toc-number">3.</span> <span class="toc-text">使用 __new__</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用装饰器"><span class="toc-number">4.</span> <span class="toc-text">使用装饰器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-metaclass"><span class="toc-number">5.</span> <span class="toc-text">使用 metaclass</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#小结"><span class="toc-number">6.</span> <span class="toc-text">小结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">7.</span> <span class="toc-text">参考资料</span></a></li></ol>
+          </div>
+      </div>
     </div>
-    <!--share-->
-    <script src="http://www.mywhblog.cn/Scripts/bdshare.js" type="text/javascript"></script>
 
-    <script src="/Scripts/jquery.min.js"></script>
-<script src="http://www.mywhblog.cn/Scripts/custom.js"></script>
-<script src="http://www.mywhblog.cn/Scripts/offcanvas.min.js"></script>
+</aside>
+
+      </div>
+      <footer id="footer">
+
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2015 - 2017 Ethan
+    </div>
+     <div id="footer-right">
+      联系方式&nbsp;|&nbsp;funhacks@foxmail.com
+    </div>
+  </div>
+</footer>
+ <script src="http://funhacks.net/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+
+    <a href="/" class="mobile-nav-link">首页</a>
+
+    <a href="/archives" class="mobile-nav-link">归档</a>
+
+    <a href="/about" class="mobile-nav-link">关于</a>
+
+</nav>
+    <img class="back-to-top-btn" src="http://funhacks.net/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+
+<script>
+  var disqus_shortname = 'funhacks';
+
+  var disqus_url = 'http://funhacks.net/2017/01/17/singleton/';
+
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
 
 
 
-    <script src="http://www.mywhblog.cn/Scripts/device.min.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            $(".article-content img").css("display", "inline-block");
-            var originalLink = "http://www.mywhblog.cn/study/javascript/13" + ".html";
-            $("#originalLink").attr("href", originalLink);
-            $("#originalLink").html(originalLink);
-            //$("#originalLink").attr("href", window.location.href);
-            //$("#originalLink").html(window.location.href);
-            clickArticle(13, "study/javascript");
 
-            var isMobile = device.mobile(),
-                isTable = device.tablet();
 
-            if (isMobile || isTable) {
-                $("#bdAd").append('<script type="text/javascript">/*6:5 创建于 2017/9/28*/var cpro_id = "u3106185";<\/script><script type="text/javascript" src="http://cpro.baidustatic.com/cpro/ui/cm.js"><\/script>');
-            }
-            else {
-                $("#bdAd").append('<script type="text\/javascript">/*760*90 创建于 2017/9/28*/var cpro_id = "u3106183";<\/script><script type="text\/javascript" src="http://cpro.baidustatic.com/cpro/ui/c.js"><\/script>');
-            }
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [["$","$"], ["\\(","\\)"]]},
+            TeX: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true }}
         });
-        //访问文章
-        function clickArticle(articleId, menuKey) {
-            $.ajax({
-                type: "post",
-                url: "/ajax/Article.ashx",
-                data: { action: 'clickArticle', articleId: articleId },
-                async: true,
-                success: function (data) {
-                    var my = eval("(" + data + ")");
-                }
-            });
-        }
+    </script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
 
-
-    <script type="text/javascript" charset="utf-8" src="https://changyan.itc.cn/js/lib/jquery.js"></script>
-    <script type="text/javascript" charset="utf-8" src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cysNShFuQ"></script>
+ <script src="/js/is.js"></script>
 
 
-    <script type="text/javascript">
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?d0852f40ec5f7055f15a9e0f84a2990d";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-    </script>
-
-    <script type="text/javascript">
-    (function () {
-        var bp = document.createElement('script');
-        var curProtocol = window.location.protocol.split(':')[0];
-        if (curProtocol === 'https') {
-            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-        }
-        else {
-            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-        }
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(bp, s);
-    })();
-    </script>
+  <link rel="stylesheet" href="http://funhacks.net/fancybox/jquery.fancybox.css">
+  <script src="http://funhacks.net/fancybox/jquery.fancybox.pack.js"></script>
 
 
+<script src="http://funhacks.net/js/script.js"></script>
+<script src="http://funhacks.net/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>
 </body>
 </html>

@@ -24,7 +24,11 @@ class yewu(object):
             print(date_oj.user)
             mylist =['用户名不存在']
             if user in  date_oj.user:
-                return redirect('/blog/index/')
+                res = redirect('/blog/index/')
+                res.set_cookie('username', user)
+                res.set_cookie('_utm',int(time.time()))
+                return res
+                #return redirect( '/blog/index/')
             else:
                 return render(req, 'login.html', {'tishi': json.dumps(mylist)})
         return render(req,'login.html')
@@ -45,7 +49,7 @@ class yewu(object):
             name = req.POST.get('user')
             pwd = req.POST.get('pwd')
             if name=='root' and pwd=='123':
-                res = redirect('/blog/cook_index/')
+                res = redirect('/blog/cook_index/')#设置cookies
                 res.set_cookie('username',name)
                 res.set_cookie("_utm",int(time.time()))
                 return res
@@ -62,7 +66,10 @@ class yewu(object):
 
 
     def index(self,req):#博客首页
-        return render(req,'index.html')
+        if req.COOKIES.get('username') and req.COOKIES.get('_utm'):
+            return render(req,'index.html')
+        else:
+            return  redirect('/blog/login/')
 
     def liuyan(self,req):#留言板
         return render(req,'liuyan.html')
@@ -82,32 +89,39 @@ class yewu(object):
 
     def page_py(self,req):#python文章分页
         global skum
-        sum = models.artice.objects.all().values()
-        print(sum)
-        pageintor =  Paginator(sum,3)
-        num = req.GET.get('num')
-        try:
-            skum = pageintor.page(num)
-        except Exception as e:
-            print(e)
-        print(num)
-        page = '/blog/python/page/?num='
-        shang_page = page + str(int(num)-1)
-        xia_page = page + str(int(num)+1)
-        return render(req,'py.html',{'skum':skum,'sp':shang_page,'xp':xia_page,'num':num})
+        if req.COOKIES.get('username') and req.COOKIES.get('_utm'):
+            sum = models.artice.objects.all().values()
+            print(sum)
+            pageintor =  Paginator(sum,3)
+            num = req.GET.get('num')
+            try:
+                skum = pageintor.page(num)
+            except Exception as e:
+                print(e)
+            print(num)
+            page = '/blog/python/page/?num='
+            shang_page = page + str(int(num)-1)
+            xia_page = page + str(int(num)+1)
+            return render(req,'py.html',{'skum':skum,'sp':shang_page,'xp':xia_page,'num':num})
+        else:
+            return redirect('/blog/login/')
+
 
     def page_dj(self,req):#django文章分页
         global skum
-        sum = models.artice.objects.all().values()
-        print(sum)
-        pageintor = Paginator(sum, 3)
-        num = req.GET.get('num')
-        try:
-            skum = pageintor.page(num)
-        except Exception as e:
-            print(e)
-        print(num)
-        page = '/blog/django/page/?num='
-        shang_page = page + str(int(num) - 1)
-        xia_page = page + str(int(num) + 1)
-        return render(req, 'dj.html', {'skum': skum,'sp':shang_page,'xp':xia_page,'num':num})
+        if req.COOKIES.get('username') and req.COOKIES.get('_utm'):
+            sum = models.artice.objects.all().values()
+            print(sum)
+            pageintor = Paginator(sum, 3)
+            num = req.GET.get('num')
+            try:
+                skum = pageintor.page(num)
+            except Exception as e:
+                print(e)
+            print(num)
+            page = '/blog/django/page/?num='
+            shang_page = page + str(int(num) - 1)
+            xia_page = page + str(int(num) + 1)
+            return render(req, 'dj.html', {'skum': skum,'sp':shang_page,'xp':xia_page,'num':num})
+        else:
+            return redirect('/blog/login/')
