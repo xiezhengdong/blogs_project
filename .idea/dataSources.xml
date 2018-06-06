@@ -1,63 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="db" uuid="3d715403-51e3-4c9c-8156-4428fbe4fada">
-      <driver-ref>03090e54-1475-4f92-a1f0-1343c76a979e</driver-ref>
+    <data-source source="LOCAL" name="data@localhost" uuid="f8b037ae-e2ed-40a7-a442-b2769b8443de">
+      <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>SQLite</remarks>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\main_spider\blogs_project\db.sqlite3</jdbc-url>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/data</jdbc-url>
       <driver-properties>
-        <property name="enable_load_extension" value="true" />
+        <property name="autoReconnect" value="true" />
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqljdbc42-6.0.8112.100.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqlserver-driver6-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqlserver6-win-auth.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/sqlite-jdbc-3.20.1.1.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqljdbc42-6.0.8112.100.jar</url>
-        </library>
-      </libraries>
     </data-source>
-    <data-source source="LOCAL" name="db [2]" uuid="0b10dfad-19bc-4568-9881-ce4dd8c0758a">
-      <driver-ref>03090e54-1475-4f92-a1f0-1343c76a979e</driver-ref>
-      <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>SQLite</remarks>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:D:\main_spider\blogs_project\db.sqlite3</jdbc-url>
-      <driver-properties>
-        <property name="enable_load_extension" value="true" />
-      </driver-properties>
-      <libraries>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqljdbc42-6.0.8112.100.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqlserver-driver6-license.txt</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqlserver6-win-auth.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.20.1.1/sqlite-jdbc-3.20.1.1.jar</url>
-        </library>
-        <library>
-          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/SQL Server/6.0.8112.100/sqljdbc42-6.0.8112.100.jar</url>
-        </library>
-      </libraries>
-    </data-source>
-    <data-source source="LOCAL" name="db [3]" uuid="099d8f08-7f18-474a-80b9-dfbf29ec68b0">
+    <data-source source="LOCAL" name="db [2]" uuid="4b5fb8a3-e300-4d78-ae7f-71d6bc572b83">
       <driver-ref>03090e54-1475-4f92-a1f0-1343c76a979e</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>

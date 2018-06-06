@@ -1,0 +1,35 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="/static/js/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+<h1>you are baici</h1>
+<form id="u" method="post" action="/blog/upload/" enctype="multipart/form-data">
+    <input type="file" name="fa">
+    <input id="my" type="text" name="user">
+    <input type="submit" value="提交">
+    <input type="button" value="ajax提交">
+</form>
+<a href="/blog/download/file/" style="text-decoration: none;">下载文件</a><br/><br/>
+
+{#<img height="200px" width="200px" src='/'>#}
+<script type="text/javascript">
+    //var name = document.getElementById('my').value();
+{#    $('input').click(function(){#}
+{#        $.ajax({#}
+{#        url:'/blog/upload/',#}
+{#        type:'get',#}
+{#        data:$("#u").serialize(),#}
+{#        success:function () {#}
+{#            alert('ok')#}
+{#        }#}
+{#    });#}
+{#        return true;#}
+{#  }#}
+{#)#}
+</script>
+</body>
+</html>

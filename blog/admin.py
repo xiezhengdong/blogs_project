@@ -1,10 +1,11 @@
 from django.contrib import admin
-from blog.models import zhuce,artice,artice_dj,artice_ja,artice_js
+from blog.models import zhuce,artice,artice_dj,artice_ja,artice_js,UserMssge
 from ckeditor.fields import RichTextField
 
 # Register your models here.
 
 admin.site.site_header = '网站管理后台'
+admin.site.register(UserMssge)
 admin.site.register(zhuce)
 admin.site.register(artice)
 admin.site.register(artice_dj)

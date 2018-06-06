@@ -6,11 +6,15 @@
 <meta name="Keywords" content="" >
 <meta name="Description" content="" >
 <link href="" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/static/font-awesome-4.7.0/css/font-awesome.min.css" type="text/css" media="all">
+<link rel="stylesheet" href="/static/css/bootstrap.min.css" type="text/css" media="all">
+<link rel="stylesheet" href="/static/css/content_style.css" type="text/css">
 <link href="/static/css/styles.css" rel="stylesheet">
 <link href="/static/css/bootstrap.min.css" rel="stylesheet">
 <link href="/static/css/bootstrap.css" rel="stylesheet">
 <link href="/static/css/bootstrap-theme.css" rel="stylesheet">
-<link href="/static/css/bootstrap-theme.css" rel="stylesheet">
+
 <!--[if lt IE 9]>
 <script src="js/modernizr.js"></script>
 <![endif]-->
@@ -49,7 +53,7 @@ ul.pagination li a.active {
 ul.pagination li a:hover:not(.active) {background-color: #ddd;}
     </style>
 </head>
-<body>
+<body >
 <header>
 <a href="/blog/index/" id="logo"><img src="/static/images/logo.png" alt=""/><h1>极客</h1></a>
  <div id="wrap-menu">
@@ -57,7 +61,7 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
      <li><a href="/blog/index/">网站首页</a></li>
      <li><a href="/">个人档案</a>
         <ul class="second-lvl">
-           <li><a href="/">关于我</a></li>
+           <li><a href="/blog/about/">关于我</a></li>
            <li><a href="/">我的相册</a></li>
            <li><a href="/">我的作品</a></li>
          </ul>
@@ -88,7 +92,6 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
             </li>
            </ul>
         </li>
-        <li><a href="/blog/liuyan/" target="_blank">爬虫世界</a></li>
 
     </ul>
 </div>
@@ -98,50 +101,122 @@ ul.pagination li a:hover:not(.active) {background-color: #ddd;}
      <img src="/static/images/banner1.jpg">
    </div>
 </div>
-<div>
+<div role="main" id="content" class="content-wrap" style="min-height: 1px;">
+    <div class="container">
+        <div id="primary" class="content-area col-md-8">
+            <main  id="main" class="site-main" role="main">
+                <article id="post-7" class="content-single-page post-7 post type-post status-publish format-standard hentry category-uncategorized">
+                    <div itemprop="text" class="entry-content">
+                       <div class="jz" >
     {% for i in skum %}
-    <div class="row">
-  <div class="col-md-8">
-    <div class="row">
-      <div class="col-md-8">
-        <h4><strong><a href="#">{{ i.title }}</a></strong></h4>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-2">
-        <a href="#" class="thumbnail">
-            <img src="/static/images/03.jpg" alt="">
-        </a>
-      </div>
-      <div class="col-md-6">
-        <p>
-         {{ i.zhaiyao }}
-        </p>
-        <p><a class="btn btn-primary btn-large" href="#">阅读全文</a></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-8">
-        <p></p>
-        <p>
-          <i class="icon-user"></i><a>阅读(4)</a>
-            <i class="icon-calendar"></i>{{ i.shjian }}
-          | <i class="icon-comment"></i> <a href="#">评论</a>
-{#          | <i class="icon-share"></i> <a href="#">转发 39 次</a>#}
-          | <i class="icon-tags"></i> 技术标签 : <a href="#"><span class="label label-info">python</span></a>
-          <a href="#"><span class="label label-info">类</span></a>
-          <a href="#"><span class="label label-info">设计模式</span></a>
-          <a href="#"><span class="label label-info">高级</span></a>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<hr>
-        <br>
+        <div class="row" >
+          <div class="col-md-8" >
+            <div class="row" >
+              <div class="col-md-8"  >
+                <h4><strong><a href="#">{{ i.title }}</a></strong></h4>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <a href="#" class="thumbnail">
+                    <img src="/static/images/03.jpg" alt="">
+                </a>
+              </div>
+              <div class="col-md-6">
+                <p style="margin: 0 auto" >
+                 {{ i.zhaiyao }}
+                </p>
+                <p><a  class="btn btn-primary btn-large" href={{ '/blog/python/content/' }}{{ i.id }}>阅读全文</a></p>
+              </div>
+            </div>
+            <div class="row" >
+              <div class="col-md-8">
+                <p></p>
+                <p style="margin: auto;text-align: center">
+                  <i class="icon-user"></i><a>阅读(4)</a>
+                    <i class="icon-calendar"></i>{{ i.shjian }}
+                  | <i class="icon-comment"></i> <a href="#">评论</a>
+        {#          | <i class="icon-share"></i> <a href="#">转发 39 次</a>#}
+                  | <i class="icon-tags" ></i> 技术标签 : <a href="#"><span class="label label-info">python</span></a>
+                  <a href="#"><span class="label label-info">类</span></a>
+                  <a href="#"><span class="label label-info">设计模式</span></a>
+                  <a href="#"><span class="label label-info">高级</span></a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
     {% endfor %}
 
 </div>
+
+                    </div><!-- .entry-content -->
+
+                    <footer class="entry-footer">
+                    </footer><!-- .entry-footer -->
+                </article><!-- #post-## -->
+
+{#                <div id="comments" class="comments-area"></div>#}
+            </main><!-- #main -->
+        </div><!-- #primary -->
+        <br/>
+        <div id="sidebar-secondary" class="col-md-4 widget-area">
+            <aside id="search-2" class="widget widget_search">
+                <form role="search" method="get" class="search-form" action="http://wordpress.ishilf.com/">
+                    <label>
+                        <span class="screen-reader-text">搜索：</span>
+                        <input type="search" class="search-field" placeholder="搜索…" value="" name="s" >
+                    </label>
+                    <input type="submit" class="search-submit" value="搜索">
+                </form>
+            </aside>
+            <aside id="recent-posts-2" class="widget widget_recent_entries"><h2 class="widget-title">最新文章</h2>
+                <div class="colored-line-left"></div>
+                <div class="clearfix widget-title-margin"></div>
+                <ul>
+                    <li>
+                        <a href="">简单好用的Linux/Windows 面板(一键创建网站、FTP、数据库)</a>
+                    </li>
+                    <li>
+                        <a href="">phpStudy的Apache配置虚拟主机</a>
+                    </li>
+                </ul>
+            </aside>
+            <aside id="recent-comments-2" class="widget widget_recent_comments"><h2 class="widget-title">最新评论</h2>
+                <div class="colored-line-left"></div>
+                <div class="clearfix widget-title-margin"></div>
+                <ul id="recentcomments">
+                    <li class="recentcomments">
+                        <span class="comment-author-link">超人</span>
+                        发表在《<a href="">phpStudy的Apache配置虚拟主机</a>》
+                    </li>
+                </ul>
+            </aside>
+            <aside id="categories-2" class="widget widget_categories"><h2 class="widget-title">栏目</h2>
+                <div class="colored-line-left"></div>
+                <div class="clearfix widget-title-margin"></div>
+                <ul>
+                    <li class="cat-item cat-item-1">
+                        <a href="">web前端</a>
+                        <a href="">php</a>
+                    </li>
+                </ul>
+            </aside>
+            <aside  class="widget widget_categories"><h2 class="widget-title">标签</h2>
+                <div class="colored-line-left"></div>
+                <div class="clearfix widget-title-margin"></div>
+                <ul>
+                    <li class="cat-item cat-item-1">
+                        <a href="">composer</a>
+                        <a href="">centos</a>
+                    </li>
+                </ul>
+            </aside>
+        </div><!-- #sidebar-secondary -->
+
+    </div>
+
 <ul class="pagination">
   <li><a href={{ sp }} name="上一页">«</a></li>
   <li><a id="1" class="" href="/blog/python/page/?num=1">1</a></li>
