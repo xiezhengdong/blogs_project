@@ -16,7 +16,7 @@ class yewu(object):
     def login(self, req):  # 用户登录
         global date_oj
         if req.method == "POST":
-            print(888888888888888888888888)
+            print(666666666666666666666666666)
             user = req.POST['user']  # 获取用户名
             password = req.POST['password']  # 获取密码
             print(user, password)
